@@ -35,7 +35,6 @@ include $(src_dir)/rv32uzba/Makefrag
 include $(src_dir)/rv32uzbb/Makefrag
 include $(src_dir)/rv32uzbc/Makefrag
 include $(src_dir)/rv32uzbs/Makefrag
-include $(src_dir)/rv32uzcmp/Makefrag
 include $(src_dir)/rv32si/Makefrag
 include $(src_dir)/rv32mi/Makefrag
 
@@ -45,7 +44,7 @@ default: all
 # Build rules
 #--------------------------------------------------------------------
 
-RISCV_PREFIX ?= /home/rez/workbench/riscv-gnu-toolchain/installed-tools/bin/riscv$(XLEN)-unknown-elf-
+RISCV_PREFIX ?= riscv$(XLEN)-unknown-elf-
 RISCV_GCC ?= $(RISCV_PREFIX)gcc
 RISCV_GCC_OPTS ?= -static -mcmodel=medany -fvisibility=hidden -nostdlib -nostartfiles
 RISCV_OBJDUMP ?= $(RISCV_PREFIX)objdump --disassemble-all --disassemble-zeroes --section=.text --section=.text.startup --section=.text.init --section=.data
@@ -100,7 +99,6 @@ $(eval $(call compile_template,rv32uzba,-march=rv32g_zba -mabi=ilp32))
 $(eval $(call compile_template,rv32uzbb,-march=rv32g_zbb -mabi=ilp32))
 $(eval $(call compile_template,rv32uzbc,-march=rv32g_zbc -mabi=ilp32))
 $(eval $(call compile_template,rv32uzbs,-march=rv32g_zbs -mabi=ilp32))
-$(eval $(call compile_template,rv32uzcmp,-march=rv32g_zcmp -mabi=ilp32))
 $(eval $(call compile_template,rv32si,-march=rv32g -mabi=ilp32))
 $(eval $(call compile_template,rv32mi,-march=rv32g -mabi=ilp32))
 ifeq ($(XLEN),64)
